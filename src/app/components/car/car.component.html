@@ -12,10 +12,34 @@
 			<li>Цвет колес: <strong>{{colors.wheels}}</strong></li>
 		</ul>
 	</div>
+	<div>
+	<h5>Редактирование</h5>
+	<button class="btn btn-danger" (click)="showEdit()">Редактирование</button>
+	</div><br>
+	<form *ngIf="isEdit">
+		<div class="from-group">
+			<input type="text" placeholder="Название машины" class="form-control" [(ngModel)]="name" name="name"><br>
+			<input type="text" placeholder="Модель машины" class="form-control" [(ngModel)]="model" name="model"><br>
+			<input type="number" placeholder="Скорость" class="form-control" [(ngModel)]="speed" name="speed"><br>
+			<input type="text" placeholder="Цвет машины" class="form-control" [(ngModel)]="colors.car" name="car"><br>
+			<input type="text" placeholder="Цвет салона" class="form-control" [(ngModel)]="colors.salon" name="salon"><br>
+			<input type="text" placeholder="Цвет колес" class="form-control" [(ngModel)]="colors.wheels" name="wheels">
+		</div>
+	</form>
+	<br>
 	<h5>Возможости автомобиля</h5>
+	<form (submit)="addOpt(option.value)">
+		<div class="from-group">
+			<label for="option">Добавление новой возможности</label>
+			<input type="text" id="option" placeholder="Введите что-то" class="form-control" #option>
+			<br>
+			<button type="submit" class="btn btn-outline-success">Добавить</button>
+		</div>
+	</form>
+	<br>
 	<div class="alert alert-warning">
 		<ul>
-			<li *ngFor="let opt of options">{{opt}}</li>
+			<li *ngFor="let opt of options"> {{opt}} <button class="btn btn-warning btn-sm" (click)="delOpt(opt)">X</button></li>
 		</ul>
 	</div>
 	<h5>Выберите автомобиль</h5>
